@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Design tokens — mirrored from the Figma file "Innosan – Hobbit Retreat
+   Landing" (paint styles, text styles and the Radius variable collection).
+   ------------------------------------------------------------------ */
+@theme {
+  /* Colour styles */
+  --color-white: #ffffff;
+  --color-ink: #000000;
+  --color-earth: #975f3a; /* Brand/Earth Brown */
+  --color-cocoa: #301909; /* Brand/Deep Cocoa */
+  --color-deepest: #20150f; /* Brand/Deepest */
+  --color-soft-grey: #e8e6e9; /* Neutral/Soft Grey */
+  --color-divider: #e9e9e9; /* Neutral/Divider */
+  --color-icon-grey: #dcdcdc; /* Neutral/Icon Grey */
+  --color-muted: #666666; /* Neutral/Muted Text — Figma #8A8A8A, darkened to pass WCAG AA on Soft Grey */
+  --color-mint: #e3f8d1; /* Accent/Mint */
+  --color-mint-watermark: #c9e8b4; /* Accent/Mint Watermark (used at 50%) */
+
+  /* Fonts */
+  --font-sans: var(--font-urbanist), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fredoka), var(--font-urbanist), sans-serif;
+
+  /* Type scale (text styles) */
+  --text-hero: 64px;
+  --text-hero--line-height: 1.1;
+  --text-h2: 52px;
+  --text-h2--line-height: 1.15;
+  --text-h2-dark: 48px;
+  --text-h2-dark--line-height: 1.15;
+  --text-gallery: 48px;
+  --text-gallery--line-height: 1.15;
+  --text-h3: 34px;
+  --text-h3--line-height: 1.35;
+  --text-sublead: 22px;
+  --text-sublead--line-height: 1.4;
+  --text-body: 15px;
+  --text-body--line-height: 1.5;
+  --text-small: 13px;
+  --text-small--line-height: 1.5;
+  --text-caption: 12px;
+  --text-caption--line-height: 1.5;
+  --text-nav: 12px;
+  --text-nav--line-height: 1;
+  --text-label: 12px;
+  --text-label--line-height: 1;
+  --text-label--letter-spacing: 0.04em;
+  --text-counter: 40px;
+  --text-counter--line-height: 1;
+  --text-wordmark: 20px;
+  --text-wordmark--line-height: 1;
+
+  /* Radius variables */
+  --radius-section: 28px; /* radius/card-section */
+  --radius-image-lg: 20px; /* radius/image-lg */
+  --radius-image: 16px; /* radius/image */
+  --radius-pill: 999px; /* radius/pill */
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* desktop zoom factor for 1024–1439px viewports, set before paint in layout.tsx */
+  --desk-zoom: 1;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background: var(--color-white);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The desktop composition is authored at exactly 1440px (pixel-matched to Figma).
+   Between 1024px and 1439px it is zoomed uniformly so nothing reflows. */
+.desk {
+  width: 100%;
+  margin-inline: auto;
+}
+@media (min-width: 1024px) {
+  .desk {
+    width: 1440px;
+    zoom: var(--desk-zoom);
+  }
+}
+
+/* Frosted glass used by play buttons and the "Details" pill */
+.frost {
+  background: rgb(255 255 255 / 0.35);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.75);
 }
