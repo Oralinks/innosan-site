@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArchMark, TriangleRightIcon } from "./Icons";
+import { svg } from "@/lib/assets";
 
 /** Connected-pill outline exported as SVG. Rendered at its exact design size; links sit on top. */
 export function Outline({ src, w, h }: { src: string; w: number; h: number }) {
@@ -41,7 +42,7 @@ export function CtaButton({
   const light = variant === "light";
   return (
     <a href={href} className={`group relative block h-[46px] w-[270px] shrink-0 rounded-pill ${className}`}>
-      <Outline src={light ? "/svg/cta-light.svg" : "/svg/cta-earth.svg"} w={270} h={46} />
+      <Outline src={svg(light ? "cta-light" : "cta-earth")} w={270} h={46} />
       <span
         className={`absolute left-1 top-1 flex h-[38px] w-[196px] items-center justify-center rounded-pill text-label font-semibold uppercase transition-opacity group-hover:opacity-90 ${
           light ? "bg-white text-ink" : "bg-earth text-white"

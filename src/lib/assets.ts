@@ -44,12 +44,18 @@ export const img = {
   gallery4,
 };
 
+/** Prefix for files in /public when the site is served from a sub-path (GitHub Pages). */
+export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+export const withBase = (p: string) => `${basePath}${p}`;
+
 export const video = {
-  heroCircle: "/video/hero-circle.mp4",
-  heroDesktop: encodeURI("/hero image and video/hero video-desktop size.mp4"),
-  heroMobile: encodeURI("/hero image and video/hero video-mobile size.mp4"),
-  interiorDesktop: encodeURI("/interior/interior video-desktop.mp4"),
-  interiorMobile: encodeURI("/interior/interior video-mobile.mp4"),
+  heroCircle: withBase("/video/hero-circle.mp4"),
+  heroDesktop: withBase(encodeURI("/hero image and video/hero video-desktop size.mp4")),
+  heroMobile: withBase(encodeURI("/hero image and video/hero video-mobile size.mp4")),
+  interiorDesktop: withBase(encodeURI("/interior/interior video-desktop.mp4")),
+  interiorMobile: withBase(encodeURI("/interior/interior video-mobile.mp4")),
 };
 
-export const avatars = [1, 2, 3, 4, 5, 6].map((n) => `/avatars/guest-${n}.webp`);
+export const avatars = [1, 2, 3, 4, 5, 6].map((n) => withBase(`/avatars/guest-${n}.webp`));
+
+export const svg = (name: string) => withBase(`/svg/${name}.svg`);

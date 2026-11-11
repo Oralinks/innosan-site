@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "Innosan",
     images: [
       {
-        url: "/hero%20image%20and%20video/hero%20image%201.jpg",
+        url: `${siteUrl}/hero%20image%20and%20video/hero%20image%201.jpg`,
         width: 1280,
         height: 853,
         alt: "An Innosan home built into a grassy hill beneath a large oak tree at sunset",

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Logo, Outline } from "./ui";
+import { svg } from "@/lib/assets";
 import { CloseIcon, MenuIcon } from "./Icons";
 
 const mainLinks = [
@@ -19,7 +20,7 @@ export function Nav() {
       {/* ---- Desktop & tablet: connected pills ---- */}
       <div className="hidden md:block">
         <div className="absolute left-0 top-0 h-10 w-[752px] origin-top-left max-lg:scale-[0.7]">
-          <Outline src="/svg/nav-main.svg" w={752} h={40} />
+          <Outline src={svg("nav-main")} w={752} h={40} />
           <a href="#top" aria-label="Innosan home" className="absolute left-[22px] top-[9px]">
             <Logo />
           </a>
@@ -38,7 +39,7 @@ export function Nav() {
           </div>
         </div>
         <div className="absolute right-0 top-0 h-10 w-[214px] origin-top-right max-lg:scale-[0.7]">
-          <Outline src="/svg/nav-right.svg" w={214} h={40} />
+          <Outline src={svg("nav-right")} w={214} h={40} />
           <a href="#faqs" className="absolute left-0 top-0 flex h-10 w-[90px] items-center justify-center text-nav font-medium text-white hover:underline">
             FAQs
           </a>

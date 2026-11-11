@@ -1,5 +1,5 @@
 ﻿import Image, { getImageProps } from "next/image";
-import { img, video } from "@/lib/assets";
+import { img, svg, video } from "@/lib/assets";
 import { Nav } from "./Nav";
 import { HeroVideo } from "./HeroVideo";
 import { VideoPlayButton } from "./VideoPlayButton";
@@ -93,7 +93,7 @@ export function Hero() {
 
         {/* Tag chain */}
         <div className="relative z-10 mt-8 h-[124px] w-[330px] self-end text-small font-medium text-white lg:absolute lg:left-[1022px] lg:top-[716px] lg:m-0">
-          <Image src="/svg/tag-chain.svg" alt="" aria-hidden="true" width={334} height={128} unoptimized className="pointer-events-none absolute -left-0.5 -top-0.5 max-w-none" />
+          <Image src={svg("tag-chain")} alt="" aria-hidden="true" width={334} height={128} unoptimized className="pointer-events-none absolute -left-0.5 -top-0.5 max-w-none" />
           <ul aria-label="Retreat qualities">
             <li className="absolute left-[52px] top-[104px] -translate-x-1/2 -translate-y-1/2">hillside</li>
             <li className="absolute left-[164px] top-[54px] -translate-x-1/2 -translate-y-1/2 -rotate-45">cosy</li>
@@ -108,7 +108,7 @@ export function Hero() {
         aria-label="Scroll to the next section"
         className="absolute bottom-[-56px] left-1/2 z-10 block h-[112px] w-[112px] -translate-x-1/2 rounded-full lg:bottom-auto lg:left-[934px] lg:top-[824px] lg:translate-x-0"
       >
-        <Image src="/svg/scroll-bite.svg" alt="" aria-hidden="true" width={112} height={112} unoptimized />
+        <Image src={svg("scroll-bite")} alt="" aria-hidden="true" width={112} height={112} unoptimized />
       </a>
     </section>
   );
