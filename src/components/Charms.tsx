@@ -4,7 +4,7 @@ import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { avatars, img } from "@/lib/assets";
 import { ChevronLeftIcon, ChevronRightIcon, GlobeIcon, StarIcon } from "./Icons";
-import { Logo, OutlinePill } from "./ui";
+import { Lines, Logo, OutlinePill, rv } from "./ui";
 
 const cards = [
   { image: img.charms2, label: ["Golden", "morning light"], alt: "Curved glass front of an Innosan home glowing at golden hour" },
@@ -25,7 +25,7 @@ export function Charms() {
       className="mx-4 mt-24 flex scroll-mt-6 flex-col gap-12 lg:mx-6 lg:mt-16 lg:h-[488px] lg:flex-row lg:items-start lg:gap-[73px]"
     >
       <div className="min-w-0 lg:w-[919px] lg:shrink-0">
-        <div ref={emblaRef} className="overflow-hidden" role="region" aria-roledescription="carousel" aria-label="Retreat highlights">
+        <div ref={emblaRef} {...rv("cards")} className="overflow-hidden" role="region" aria-roledescription="carousel" aria-label="Retreat highlights">
           <div className="-ml-5 flex">
             {slides.map((c, i) => (
               <div
@@ -35,7 +35,7 @@ export function Charms() {
                 aria-label={`${c.num} of 03`}
                 className="min-w-0 flex-[0_0_85%] pl-5 sm:flex-[0_0_50%] lg:flex-[0_0_313px]"
               >
-                <article className="relative h-[208px] overflow-hidden rounded-image">
+                <article className="rv-card relative h-[208px] overflow-hidden rounded-image" style={{ "--c": i } as React.CSSProperties}>
                   <Image src={c.image} alt={c.alt} fill sizes="(min-width: 1024px) 293px, (min-width: 640px) 50vw, 85vw" className="object-cover" />
                   <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0),rgba(0,0,0,0.55))]" />
                   <span aria-hidden="true" className="absolute left-3 top-3 flex h-7 w-7 items-center justify-center rounded-full border-[1.5px] border-white text-white">
@@ -55,18 +55,16 @@ export function Charms() {
 
         <div className="mt-[42px] flex items-start justify-between gap-6">
           <div className="flex flex-col gap-4">
-            <h2 id="charms-title" className="text-[36px] font-normal leading-[1.15] md:text-h2">
-              Explore What Makes
-              <br />
-              Every Stay Special
+            <h2 id="charms-title" {...rv("lines", 1)} className="text-[36px] font-normal leading-[1.15] md:text-h2">
+              <Lines lines={["Explore What Makes", "Every Stay Special"]} />
             </h2>
-            <p className="text-caption">
+            <p {...rv("up", 3)} className="text-caption">
               Every home is set into the land, so the views,
               <br />
               the light and the quiet come included.
             </p>
           </div>
-          <div className="flex shrink-0 gap-7 pt-[14px]">
+          <div {...rv("fade", 4)} className="flex shrink-0 gap-7 pt-[14px]">
             <button type="button" aria-label="Previous highlight" onClick={() => embla?.scrollPrev()} className="text-ink transition-opacity hover:opacity-60">
               <ChevronLeftIcon size={24} />
             </button>
@@ -77,7 +75,7 @@ export function Charms() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-[14px] lg:w-[400px] lg:shrink-0 lg:pt-[98px]">
+      <div {...rv("stagger", 2)} className="flex flex-col gap-[14px] lg:w-[400px] lg:shrink-0 lg:pt-[98px]">
         <Logo tone="ink" />
         <p className="text-caption">
           Innosan builds homes into the hillside: low-impact retreats with meadow roofs, timber ceilings and a living tree at the heart of every

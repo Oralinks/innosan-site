@@ -1,4 +1,5 @@
 import { DiscordIcon, InstagramIcon, TelegramIcon } from "./Icons";
+import { rv } from "./ui";
 
 const socials = [
   { label: "Innosan on Telegram", Icon: TelegramIcon },
@@ -10,8 +11,8 @@ const socials = [
 export function Footer() {
   return (
     <footer id="contact" className="scroll-mt-6">
-      <div className="mx-4 mt-16 h-px bg-divider lg:mx-6 lg:mt-[58px]" />
-      <div className="relative mx-4 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 py-8 text-caption lg:mx-6 lg:mb-[46px] lg:mt-[49px] lg:block lg:h-[34px] lg:py-0">
+      <div {...rv("line")} className="mx-4 mt-16 h-px bg-divider lg:mx-6 lg:mt-[58px]" />
+      <div {...rv("stagger", 2)} className="relative mx-4 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 py-8 text-caption lg:mx-6 lg:mb-[46px] lg:mt-[49px] lg:block lg:h-[34px] lg:py-0">
         <p className="lg:absolute lg:left-0 lg:top-[9px]">© 2026</p>
         <a href="#" className="underline lg:absolute lg:left-[236px] lg:top-[9px]">
           privacy policy

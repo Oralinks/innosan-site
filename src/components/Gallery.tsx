@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { img } from "@/lib/assets";
 import { ArchMark, DiscordIcon, InstagramIcon, TelegramIcon } from "./Icons";
-import { OutlinePill, Watermark } from "./ui";
+import { OutlinePill, rv, Watermark } from "./ui";
 
 const socials = [
   { label: "Innosan on Telegram", Icon: TelegramIcon },
@@ -22,18 +22,19 @@ export function Gallery() {
     <section
       id="journal"
       aria-labelledby="gallery-title"
+      {...rv("up")}
       className="relative mx-4 mt-16 scroll-mt-6 overflow-hidden rounded-section bg-mint px-4 py-8 md:px-8 lg:mx-6 lg:mt-[50px] lg:h-[818px] lg:p-0"
     >
       <Watermark size={300} className="-top-[70px] left-[1180px] hidden text-mint-watermark opacity-50 lg:block" />
       <Watermark size={320} className="-left-20 top-[560px] text-mint-watermark opacity-50 max-lg:-bottom-20 max-lg:top-auto" />
       <Watermark size={200} className="left-10 top-[250px] hidden text-mint-watermark opacity-50 lg:block" />
 
-      <h2 id="gallery-title" className="relative flex items-center justify-center gap-3 text-[36px] font-normal leading-[1.15] md:text-gallery lg:absolute lg:inset-x-0 lg:top-[30px]">
+      <h2 id="gallery-title" {...rv("up", 2)} className="relative flex items-center justify-center gap-3 text-[36px] font-normal leading-[1.15] md:text-gallery lg:absolute lg:inset-x-0 lg:top-[30px]">
         <ArchMark size={40} strokeWidth={1.4} />
         Gallery
       </h2>
 
-      <div className="relative mt-6 flex justify-center md:justify-start lg:absolute lg:left-[234px] lg:top-[150px] lg:m-0">
+      <div {...rv("left", 3)} className="relative mt-6 flex justify-center md:justify-start lg:absolute lg:left-[234px] lg:top-[150px] lg:m-0">
         <OutlinePill className="gap-2 py-1.5 pl-[18px] pr-1.5 text-caption">
           follow us
           {socials.map(({ label, Icon }) => (
@@ -50,20 +51,20 @@ export function Gallery() {
       </div>
 
       <div className="relative mt-8 grid grid-cols-2 gap-3 lg:static lg:m-0 lg:block">
-        {photos.map((p) => (
-          <div key={p.alt} className={`relative aspect-[4/3] overflow-hidden rounded-image lg:absolute lg:aspect-auto ${p.pos}`}>
+        {photos.map((p, i) => (
+          <div key={p.alt} {...rv("clip", 3 + i)} className={`relative aspect-[4/3] overflow-hidden rounded-image lg:absolute lg:aspect-auto ${p.pos}`}>
             <Image src={p.image} alt={p.alt} fill sizes={`(min-width: 1024px) ${p.sizes}, 50vw`} className="object-cover" />
           </div>
         ))}
       </div>
 
       <div className="relative mt-6 flex flex-col gap-4 text-caption sm:flex-row sm:justify-between lg:static lg:m-0">
-        <p className="lg:absolute lg:left-[1124px] lg:top-[360px]">
+        <p {...rv("fade", 6)} className="lg:absolute lg:left-[1124px] lg:top-[360px]">
           Light pours in through
           <br />
           the treetop skylight.
         </p>
-        <p className="lg:absolute lg:left-[574px] lg:top-[584px] lg:text-center">
+        <p {...rv("fade", 7)} className="lg:absolute lg:left-[574px] lg:top-[584px] lg:text-center">
           Every corner is made
           <br />
           for slowing down.
@@ -72,6 +73,7 @@ export function Gallery() {
 
       <OutlinePill
         href="#stays"
+        motion={rv("up", 8)}
         className="relative mt-8 h-11 w-full px-5 text-center text-label font-semibold uppercase lg:absolute lg:left-[493px] lg:top-[734px] lg:m-0 lg:w-[406px]"
       >
         See every home in the collection

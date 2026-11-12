@@ -4,7 +4,7 @@ import Image, { getImageProps } from "next/image";
 import { useState } from "react";
 import { img, video } from "@/lib/assets";
 import { ArrowRightIcon, ChevronRightIcon, ExpandIcon, HeartIcon } from "./Icons";
-import { OutlinePill, Watermark } from "./ui";
+import { OutlinePill, rv, Watermark } from "./ui";
 import { VideoPlayButton } from "./VideoPlayButton";
 
 const rows = [
@@ -23,12 +23,12 @@ export function Interior() {
     <section id="faqs" aria-labelledby="interior-title" className="relative mx-4 mt-16 flex scroll-mt-6 flex-col gap-10 lg:mx-6 lg:mt-16 lg:block lg:h-[560px]">
       <Watermark size={340} strokeWidth={0.45} className="left-[300px] top-[120px] hidden text-ink opacity-5 lg:block" />
 
-      <h2 id="interior-title" className="text-[26px] font-normal leading-[1.35] md:text-h3 lg:absolute lg:left-0 lg:top-0 lg:w-[620px]">
+      <h2 id="interior-title" {...rv("up")} className="text-[26px] font-normal leading-[1.35] md:text-h3 lg:absolute lg:left-0 lg:top-0 lg:w-[620px]">
         A calm, earthy home made for long dinners, deep sleep and slow mornings together
       </h2>
 
       {/* Q&A list */}
-      <div className="lg:absolute lg:left-[707px] lg:top-0 lg:w-[685px]">
+      <div {...rv("stagger", 1)} className="lg:absolute lg:left-[707px] lg:top-0 lg:w-[685px]">
         {rows.map((r, i) => {
           const num = String(i + 1).padStart(2, "0");
           const isOpen = open === i;
@@ -72,9 +72,9 @@ export function Interior() {
       </div>
 
       {/* Video card */}
-      <div className="lg:absolute lg:left-0 lg:top-[281px]">
+      <div {...rv("up", 2)} className="lg:absolute lg:left-0 lg:top-[281px]">
         <div className="relative pt-[15px]">
-          <div className="relative h-[206px] w-full overflow-hidden rounded-image md:w-[330px]">
+          <div {...rv("clip", 3)} className="relative h-[206px] w-full overflow-hidden rounded-image md:w-[330px]">
             <Image src={img.interior1} alt="Library hallway with clay columns and built-in shelves" fill sizes="(min-width: 768px) 330px, 100vw" className="object-cover" />
             <VideoPlayButton
               src={video.interiorDesktop}
@@ -98,6 +98,7 @@ export function Interior() {
 
       <a
         href="#journal"
+        {...rv("right", 4)}
         className="flex items-center gap-[14px] self-end rounded-pill bg-ink py-[5px] pl-[18px] pr-[5px] text-small font-medium text-white transition-opacity hover:opacity-85 lg:absolute lg:right-6 lg:top-[516px]"
       >
         explore homes

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { avatars, img } from "@/lib/assets";
+import { Lines, rv } from "./ui";
 import { AppleIcon, BadgeCheckIcon, CalendarIcon, ChevronsRightIcon, GlobeIcon, GoogleGlyph } from "./Icons";
 
 const slides = [
@@ -26,6 +27,7 @@ export function Booking() {
       id="stays"
       aria-labelledby="booking-title"
       aria-roledescription="carousel"
+      {...rv("clip")}
       className="relative mx-4 mt-16 scroll-mt-6 overflow-hidden rounded-section p-4 md:p-6 lg:mx-6 lg:mt-0 lg:h-[670px] lg:p-0"
     >
       {/* Background slider */}
@@ -45,20 +47,18 @@ export function Booking() {
 
       <div className="relative flex flex-col gap-6 lg:static lg:block">
         {/* Right column content */}
-        <h2 id="booking-title" className="pr-14 text-[32px] font-normal leading-[1.15] text-white md:text-h2-dark lg:absolute lg:left-[594px] lg:top-[34px] lg:p-0">
-          Reserve Your Hillside
-          <br />
-          Escape Today
+        <h2 id="booking-title" {...rv("lines", 3)} className="pr-14 text-[32px] font-normal leading-[1.15] text-white md:text-h2-dark lg:absolute lg:left-[594px] lg:top-[34px] lg:p-0">
+          <Lines lines={["Reserve Your Hillside", "Escape Today"]} />
         </h2>
-        <span aria-hidden="true" className="absolute right-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-white text-white lg:left-[1296px] lg:top-[42px]">
+        <span aria-hidden="true" {...rv("scale", 4)} className="absolute right-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-white text-white lg:left-[1296px] lg:top-[42px]">
           <GlobeIcon size={18} />
         </span>
-        <p className="text-sublead text-white lg:absolute lg:left-[594px] lg:top-[176px]">
+        <p {...rv("up", 5)} className="text-sublead text-white lg:absolute lg:left-[594px] lg:top-[176px]">
           Meet fellow travellers
           <br />
           and share the trail
         </p>
-        <div className="flex flex-wrap items-center gap-x-[26px] gap-y-4 lg:absolute lg:left-[594px] lg:top-[262px] lg:flex-nowrap">
+        <div {...rv("up", 6)} className="flex flex-wrap items-center gap-x-[26px] gap-y-4 lg:absolute lg:left-[594px] lg:top-[262px] lg:flex-nowrap">
           <div className="flex items-center">
             <span className="relative block h-[58px] w-[58px] shrink-0">
               <svg aria-hidden="true" className="absolute inset-0" width="58" height="58" viewBox="0 0 58 58" fill="none">
@@ -81,7 +81,7 @@ export function Booking() {
         </div>
 
         {/* Left column: booking card */}
-        <div className="flex flex-col gap-4 rounded-image bg-white p-[18px] md:max-w-[406px] lg:absolute lg:left-[42px] lg:top-10 lg:h-[416px] lg:w-[406px]">
+        <div {...rv("left", 3)} className="flex flex-col gap-4 rounded-image bg-white p-[18px] md:max-w-[406px] lg:absolute lg:left-[42px] lg:top-10 lg:h-[416px] lg:w-[406px]">
           <div className="flex justify-between">
             <div className="flex flex-col gap-[26px]">
               <BadgeCheckIcon size={24} />
@@ -125,7 +125,7 @@ export function Booking() {
         </div>
 
         {/* Your stay */}
-        <div className="flex h-16 items-center gap-3 rounded-xl bg-white pl-2 pr-4 md:max-w-[406px] lg:absolute lg:left-[42px] lg:top-[470px] lg:w-[406px]">
+        <div {...rv("left", 4)} className="flex h-16 items-center gap-3 rounded-xl bg-white pl-2 pr-4 md:max-w-[406px] lg:absolute lg:left-[42px] lg:top-[470px] lg:w-[406px]">
           <div className="relative h-[46px] w-[66px] shrink-0 overflow-hidden rounded-lg">
             <Image src={img.booking1} alt="Hillside home beneath an oak at sunset" fill sizes="66px" className="object-cover" />
           </div>
@@ -141,13 +141,14 @@ export function Booking() {
 
         <a
           href="#stays"
+          {...rv("left", 5)}
           className="flex h-[62px] items-center justify-center rounded-pill border-[1.5px] border-white text-small font-medium text-white transition-colors hover:bg-white/10 md:max-w-[406px] lg:absolute lg:left-[42px] lg:top-[552px] lg:w-[406px]"
         >
           View reservation
         </a>
 
         {/* Counter + progress */}
-        <div className="lg:absolute lg:left-[594px] lg:top-[560px]" aria-live="polite">
+        <div {...rv("up", 6)} className="lg:absolute lg:left-[594px] lg:top-[560px]" aria-live="polite">
           <p className="text-counter text-white">
             <span className="sr-only">Slide </span>
             {String(active + 1).padStart(2, "0")}
@@ -162,6 +163,7 @@ export function Booking() {
 
         <a
           href="#stays"
+          {...rv("right", 7)}
           className="flex h-11 items-center justify-center rounded-pill border-[1.5px] border-white px-5 text-center text-label font-semibold uppercase text-white transition-colors hover:bg-white/10 md:max-w-[406px] lg:absolute lg:left-[948px] lg:top-[586px] lg:w-[406px]"
         >
           Plan your next stay with us

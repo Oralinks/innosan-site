@@ -49,11 +49,17 @@ export const viewport: Viewport = {
 // The ResizeObserver re-runs it when the vertical scrollbar appears and narrows clientWidth.
 const zoomScript = `(function(){function s(){var w=document.documentElement.clientWidth;document.documentElement.style.setProperty('--desk-zoom',w>=1024&&w<1440?String(w/1440):'1')}s();addEventListener('resize',s);if(window.ResizeObserver)new ResizeObserver(s).observe(document.documentElement)})();`;
 
+// Scroll motion: marks <html> with data-motion (unless reduced motion is preferred) and
+// tags each [data-reveal] element with data-shown as it enters the viewport. Runs before
+// hydration, so nothing waits on React; uses an attribute React never rewrites.
+const motionScript = `(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.setAttribute('data-motion','');function go(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.setAttribute('data-shown','');io.unobserve(e.target)}})},{threshold:0.15});document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el)})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})();`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${urbanist.variable} ${fredoka.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: zoomScript }} />
+        <script dangerouslySetInnerHTML={{ __html: motionScript }} />
       </head>
       <body>{children}</body>
     </html>

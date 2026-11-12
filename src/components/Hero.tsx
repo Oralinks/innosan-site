@@ -2,7 +2,7 @@
 import { img, svg, video } from "@/lib/assets";
 import { HeroVideo } from "./HeroVideo";
 import { VideoPlayButton } from "./VideoPlayButton";
-import { CtaButton } from "./ui";
+import { CtaButton, Lines, rv } from "./ui";
 
 const orbitNodes = [
   { label: "Grounded", x: 125.1, y: 65 },
@@ -24,6 +24,7 @@ export function Hero() {
           fill
           preload
           sizes="100vw"
+          data-reveal="settle"
           className="object-cover"
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top_right,rgba(0,0,0,0.35),rgba(0,0,0,0))]" />
@@ -37,7 +38,7 @@ export function Hero() {
       <div className="contents lg:absolute lg:left-6 lg:top-6 lg:block lg:h-[880px] lg:w-[1392px]">
 
         {/* Blurb (top-right) */}
-        <p className="relative z-10 ml-auto mt-10 w-[260px] text-right text-caption text-white lg:absolute lg:left-[1092px] lg:top-[284px] lg:m-0">
+        <p {...rv("fade", 5)} className="relative z-10 ml-auto mt-10 w-[260px] text-right text-caption text-white lg:absolute lg:left-[1092px] lg:top-[284px] lg:m-0">
           Slow mornings under a meadow roof.
           <br />
           Reserve your dates now and start
@@ -47,7 +48,7 @@ export function Hero() {
 
         {/* Video circle with orbit labels */}
         {/* Mobile: the 385x330 composition is scaled to 0.85 (327px), or 0.72 (277px) on phones under 360px */}
-        <div className="relative z-10 mx-auto mt-6 h-[238px] w-[277px] min-[360px]:h-[281px] min-[360px]:w-[327px] lg:absolute lg:left-[954px] lg:top-[381px] lg:m-0 lg:h-[330px] lg:w-[385px]">
+        <div {...rv("scale", 3)} className="relative z-10 mx-auto mt-6 h-[238px] w-[277px] min-[360px]:h-[281px] min-[360px]:w-[327px] lg:absolute lg:left-[954px] lg:top-[381px] lg:m-0 lg:h-[330px] lg:w-[385px]">
           <div className="relative h-[330px] w-[385px] origin-top-left scale-[0.72] min-[360px]:scale-[0.85] lg:scale-100">
             <div className="absolute left-[117px] top-8 h-[266px] w-[266px] overflow-hidden rounded-full border-[1.5px] border-white/85">
               <HeroVideo src={video.heroCircle} poster={poster} label="Short looping film of an Innosan home" />
@@ -83,18 +84,14 @@ export function Hero() {
 
         {/* Headline + CTA */}
         <div className="relative z-10 mt-auto pt-8 lg:static lg:m-0 lg:p-0">
-          <h1 className="text-[40px] font-normal leading-[1.1] text-white md:text-[52px] lg:absolute lg:left-11 lg:top-[548px] lg:text-hero">
-            Wake Up Inside
-            <br />
-            a Living Hillside
-            <br />
-            This Season
+          <h1 {...rv("lines", 1)} className="text-[40px] font-normal leading-[1.1] text-white md:text-[52px] lg:absolute lg:left-11 lg:top-[548px] lg:text-hero">
+            <Lines lines={["Wake Up Inside", "a Living Hillside", "This Season"]} />
           </h1>
-          <CtaButton href="#stays" label="Book a stay" variant="light" className="mt-8 lg:absolute lg:left-11 lg:top-[790px] lg:m-0" />
+          <CtaButton href="#stays" label="Book a stay" variant="light" motion={rv("up", 5)} className="mt-8 lg:absolute lg:left-11 lg:top-[790px] lg:m-0" />
         </div>
 
         {/* Tag chain */}
-        <div className="relative z-10 mt-8 h-[124px] w-[330px] self-end text-small font-medium text-white lg:absolute lg:left-[1022px] lg:top-[716px] lg:m-0">
+        <div {...rv("right", 6)} className="relative z-10 mt-8 h-[124px] w-[330px] self-end text-small font-medium text-white lg:absolute lg:left-[1022px] lg:top-[716px] lg:m-0">
           <Image src={svg("tag-chain")} alt="" aria-hidden="true" width={334} height={128} unoptimized className="pointer-events-none absolute -left-0.5 -top-0.5 max-w-none" />
           <ul aria-label="Retreat qualities">
             <li className="absolute left-[52px] top-[104px] -translate-x-1/2 -translate-y-1/2">hillside</li>
@@ -107,6 +104,7 @@ export function Hero() {
         <a
           href="#about"
           aria-label="Scroll to the next section"
+          {...rv("scale", 7)}
           className="absolute bottom-[-56px] left-1/2 z-10 block h-[112px] w-[112px] -translate-x-1/2 rounded-full lg:bottom-auto lg:left-[934px] lg:top-[824px] lg:translate-x-0"
         >
           <Image src={svg("scroll-bite")} alt="" aria-hidden="true" width={112} height={112} unoptimized />

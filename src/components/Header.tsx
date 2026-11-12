@@ -21,6 +21,7 @@ export function Header() {
       }`}
     >
       <div
+        data-reveal="down"
         className={`desk px-4 transition-[padding] duration-300 md:px-6 lg:px-12 ${
           scrolled ? "py-3" : "py-4 lg:py-6"
         }`}
