@@ -46,8 +46,9 @@ export function Hero() {
         </p>
 
         {/* Video circle with orbit labels */}
-        <div className="relative z-10 mx-auto mt-6 h-[281px] w-[327px] lg:absolute lg:left-[954px] lg:top-[381px] lg:m-0 lg:h-[330px] lg:w-[385px]">
-          <div className="relative h-[330px] w-[385px] origin-top-left scale-[0.85] lg:scale-100">
+        {/* Mobile: the 385x330 composition is scaled to 0.85 (327px), or 0.72 (277px) on phones under 360px */}
+        <div className="relative z-10 mx-auto mt-6 h-[238px] w-[277px] min-[360px]:h-[281px] min-[360px]:w-[327px] lg:absolute lg:left-[954px] lg:top-[381px] lg:m-0 lg:h-[330px] lg:w-[385px]">
+          <div className="relative h-[330px] w-[385px] origin-top-left scale-[0.72] min-[360px]:scale-[0.85] lg:scale-100">
             <div className="absolute left-[117px] top-8 h-[266px] w-[266px] overflow-hidden rounded-full border-[1.5px] border-white/85">
               <HeroVideo src={video.heroCircle} poster={poster} label="Short looping film of an Innosan home" />
             </div>
