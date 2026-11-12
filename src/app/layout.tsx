@@ -46,7 +46,8 @@ export const viewport: Viewport = {
 };
 
 // Sets the desktop zoom factor before first paint (no layout shift between 1024 and 1439px).
-const zoomScript = `(function(){function s(){var w=document.documentElement.clientWidth;document.documentElement.style.setProperty('--desk-zoom',w>=1024&&w<1440?String(w/1440):'1')}s();addEventListener('resize',s)})();`;
+// The ResizeObserver re-runs it when the vertical scrollbar appears and narrows clientWidth.
+const zoomScript = `(function(){function s(){var w=document.documentElement.clientWidth;document.documentElement.style.setProperty('--desk-zoom',w>=1024&&w<1440?String(w/1440):'1')}s();addEventListener('resize',s);if(window.ResizeObserver)new ResizeObserver(s).observe(document.documentElement)})();`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

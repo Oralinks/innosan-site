@@ -1,6 +1,5 @@
 ﻿import Image, { getImageProps } from "next/image";
 import { img, svg, video } from "@/lib/assets";
-import { Nav } from "./Nav";
 import { HeroVideo } from "./HeroVideo";
 import { VideoPlayButton } from "./VideoPlayButton";
 import { CtaButton } from "./ui";
@@ -16,24 +15,26 @@ export function Hero() {
   const poster = getImageProps({ src: img.heroCircle, alt: "", width: 300, quality: 75 }).props.src;
 
   return (
-    <section id="top" aria-label="Introduction" className="relative mx-4 mt-4 lg:mx-6 lg:mt-6 lg:h-[880px]">
-      <div className="relative flex min-h-[860px] flex-col overflow-hidden rounded-section p-4 md:p-6 lg:block lg:h-full lg:min-h-0 lg:p-0">
+    <section id="top" aria-label="Introduction" className="relative">
+      {/* Full-bleed background, edge to edge at every width */}
+      <div className="absolute inset-0 overflow-hidden">
         <Image
           src={img.heroBg}
           alt="Grass-roofed Innosan home set into a hillside beneath a large oak tree at sunset"
           fill
           preload
-          sizes="(min-width: 1024px) 1392px, 100vw"
+          sizes="100vw"
           className="object-cover"
         />
         <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top_right,rgba(0,0,0,0.35),rgba(0,0,0,0))]" />
-        <div aria-hidden="true" className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.18),rgba(0,0,0,0))]" />
+        <div aria-hidden="true" className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.25),rgba(0,0,0,0))]" />
         <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-3/5 bg-[linear-gradient(to_top,rgba(0,0,0,0.45),rgba(0,0,0,0))] lg:hidden" />
+      </div>
 
-        {/* S1 Nav */}
-        <div className="relative z-20 h-10 lg:absolute lg:left-6 lg:top-6 lg:w-[1344px]">
-          <Nav />
-        </div>
+      <div className="desk relative">
+      <div className="relative flex min-h-[860px] flex-col px-4 pb-16 pt-24 md:px-6 md:pt-28 lg:block lg:h-[904px] lg:min-h-0 lg:p-0">
+      {/* Content box: same 1392x880 card coordinates as the Figma frame */}
+      <div className="contents lg:absolute lg:left-6 lg:top-6 lg:block lg:h-[880px] lg:w-[1392px]">
 
         {/* Blurb (top-right) */}
         <p className="relative z-10 ml-auto mt-10 w-[260px] text-right text-caption text-white lg:absolute lg:left-[1092px] lg:top-[284px] lg:m-0">
@@ -100,16 +101,18 @@ export function Hero() {
             <li className="absolute left-[262px] top-[104px] -translate-x-1/2 -translate-y-1/2">stillness</li>
           </ul>
         </div>
-      </div>
 
-      {/* Scroll bite: sits on the card's bottom edge */}
-      <a
-        href="#about"
-        aria-label="Scroll to the next section"
-        className="absolute bottom-[-56px] left-1/2 z-10 block h-[112px] w-[112px] -translate-x-1/2 rounded-full lg:bottom-auto lg:left-[934px] lg:top-[824px] lg:translate-x-0"
-      >
-        <Image src={svg("scroll-bite")} alt="" aria-hidden="true" width={112} height={112} unoptimized />
-      </a>
+        {/* Scroll bite: sits on the hero's bottom edge */}
+        <a
+          href="#about"
+          aria-label="Scroll to the next section"
+          className="absolute bottom-[-56px] left-1/2 z-10 block h-[112px] w-[112px] -translate-x-1/2 rounded-full lg:bottom-auto lg:left-[934px] lg:top-[824px] lg:translate-x-0"
+        >
+          <Image src={svg("scroll-bite")} alt="" aria-hidden="true" width={112} height={112} unoptimized />
+        </a>
+      </div>
+      </div>
+      </div>
     </section>
   );
 }

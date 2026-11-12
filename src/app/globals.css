@@ -65,6 +65,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* keep anchored sections clear of the fixed header */
+  scroll-padding-top: 64px;
   background: var(--color-white);
 }
 
