@@ -47,7 +47,10 @@ export const viewport: Viewport = {
 
 // Sets the desktop zoom factor before first paint (no layout shift between 1024 and 1439px).
 // The ResizeObserver re-runs it when the vertical scrollbar appears and narrows clientWidth.
-const zoomScript = `(function(){function s(){var w=document.documentElement.clientWidth;document.documentElement.style.setProperty('--desk-zoom',w>=1024&&w<1440?String(w/1440):'1')}s();addEventListener('resize',s);if(window.ResizeObserver)new ResizeObserver(s).observe(document.documentElement)})();`;
+// --hero-zoom also fits the hero's 1440x904 composition to the window height.
+// --orbit-s sizes the stacked (below 1024px) hero's video circle: the rest of the stack takes
+// about 568px (640px at 768px+), so the circle gets what is left, between 0.5x and 0.85x.
+const zoomScript = `(function(){function s(){var d=document.documentElement,w=d.clientWidth,h=window.innerHeight;d.style.setProperty('--desk-zoom',w>=1024&&w<1440?String(w/1440):'1');d.style.setProperty('--hero-zoom',w>=1024?String(Math.min(1,w/1440,h/904)):'1');d.style.setProperty('--orbit-s',String(Math.max(0.5,Math.min(0.85,(w-32)/385,(h-(w>=768?640:568))/330))))}s();addEventListener('resize',s);if(window.ResizeObserver)new ResizeObserver(s).observe(document.documentElement)})();`;
 
 // Scroll motion: marks <html> with data-motion (unless reduced motion is preferred) and
 // tags each [data-reveal] element with data-shown as it enters the viewport. Runs before

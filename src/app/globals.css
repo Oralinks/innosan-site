@@ -92,6 +92,31 @@ body {
   }
 }
 
+/* Hero content groups: zoomed so the whole hero fits one screen, by width and by height
+   (--hero-zoom = min(1, width/1440, height/904), set in layout.tsx). */
+:root {
+  --hero-zoom: 1;
+  --orbit-s: 0.85;
+}
+@media (min-width: 1024px) {
+  .hero-fit {
+    zoom: var(--hero-zoom);
+  }
+}
+/* Video circle + orbit labels (authored 385x330). Below 1024px it scales by --orbit-s. */
+.hero-orbit {
+  width: calc(385px * var(--orbit-s));
+  height: calc(330px * var(--orbit-s));
+}
+.hero-orbit > div {
+  scale: var(--orbit-s);
+}
+@media (min-width: 1024px) {
+  .hero-orbit {
+    --orbit-s: 1;
+  }
+}
+
 /* Frosted glass used by play buttons and the "Details" pill */
 .frost {
   background: rgb(255 255 255 / 0.35);
